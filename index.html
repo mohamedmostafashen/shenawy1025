@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع تعليمي متكامل</title>
+    <style>
+        :root {
+            /* ===== الوضع النهاري (أبيض + أزرق) ===== */
+            --bs-body-bg: #ffffff;
+            --bs-main-bg: #f8fafc;
+            --bs-body-color: #1e293b;
+            
+            /* الألوان الأساسية */
+            --jt-primary: #2563eb;
+            --jt-primary-hover: #1d4ed8;
+            --jt-primary-light: #dbeafe;
+            
+            /* العناوين والروابط */
+            --jt-heading-color: #1e40af;
+            --jt-link-color: #2563eb;
+            --jt-link-hover: #1d4ed8;
+            
+            /* العناصر التفاعلية */
+            --jt-btn-primary: #2563eb;
+            --jt-btn-primary-hover: #1d4ed8;
+            
+            /* الحدود والخلفيات الثانوية */
+            --jt-border-light: #e2e8f0;
+            --jt-bg-light: #f1f5f9;
+            
+            /* القوائم والتنقل */
+            --jt-nav-color: #334155;
+            --jt-nav-hover: #2563eb;
+            --jt-nav-selected: #1e40af;
+            
+            /* الهيدر والفوتر */
+            --jt-header-bg: #ffffff;
+            --jt-header-color: #1e293b;
+            --jt-header-border: #e2e8f0;
+            --jt-footer-bg: #f8fafc;
+            --jt-footer-color: #475569;
+            --jt-footer-link: #2563eb;
+            
+            /* الظلال */
+            --jt-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --jt-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --jt-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            
+            /* الزوايا */
+            --jt-radius-sm: 0.5rem;
+            --jt-radius-md: 1rem;
+            
+            /* تأثيرات الانتقال */
+            --jt-transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .dark-mode {
+            /* ===== الوضع الليلي (أسود + أزرق نيون) ===== */
+            --bs-body-bg: #0f172a;
+            --bs-main-bg: #1e293b;
+            --bs-body-color: #e2e8f0;
+            
+            --jt-primary: #60a5fa;
+            --jt-primary-hover: #93c5fd;
+            --jt-primary-light: #1e3a8a;
+            
+            --jt-heading-color: #60a5fa;
+            --jt-link-color: #60a5fa;
+            --jt-link-hover: #93c5fd;
+            
+            --jt-btn-primary: #60a5fa;
+            --jt-btn-primary-hover: #93c5fd;
+            
+            --jt-border-light: #334155;
+            --jt-bg-light: #1e293b;
+            
+            --jt-nav-color: #94a3b8;
+            --jt-nav-hover: #60a5fa;
+            --jt-nav-selected: #93c5fd;
+            
+            --jt-header-bg: #1e293b;
+            --jt-header-color: #e2e8f0;
+            --jt-header-border: #334155;
+            --jt-footer-bg: #1e293b;
+            --jt-footer-color: #94a3b8;
+            --jt-footer-link: #60a5fa;
+            
+            --jt-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --jt-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --jt-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+            transition: var(--jt-transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* الشريط العلوي */
+        header {
+            background-color: var(--jt-header-bg);
+            color: var(--jt-header-color);
+            border-bottom: 1px solid var(--jt-header-border);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--jt-shadow-sm);
+            transition: var(--jt-transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: var(--jt-transition);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--jt-primary);
+            margin: 0;
+            transition: var(--jt-transition);
+        }
+
+        /* القائمة الرئيسية */
+        nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--jt-nav-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1rem 1.2rem;
+            transition: var(--jt-transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            border-radius: var(--jt-radius-sm);
+        }
+
+        .nav-link:hover {
+            color: var(--jt-nav-hover);
+            background-color: var(--jt-primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* القوائم المنسدلة */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--jt-header-bg);
+            border: 1px solid var(--jt-border-light);
+            border-radius: var(--jt-radius-sm);
+            padding: 0.5rem 0;
+            min-width: 220px;
+            box-shadow: var(--jt-shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--jt-transition);
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--jt-nav-color);
+            text-decoration: none;
+            transition: var(--jt-transition);
+            font-size: 1rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--jt-primary-light);
+            color: var(--jt-nav-hover);
+            padding-right: 2rem;
+        }
+
+        /* أزرار التحكم */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--jt-nav-color);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: var(--jt-transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .control-btn:hover {
+            color: var(--jt-nav-hover);
+            background-color: var(--jt-primary-light);
+            transform: scale(1.1);
+        }
+
+        /* شريط البحث في منتصف الصفحة */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--jt-transition);
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 2rem;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            transform: translateY(20px);
+            transition: var(--jt-transition);
+        }
+
+        .search-overlay.active .search-box {
+            transform: translateY(0);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            border: none;
+            border-radius: var(--jt-radius-md);
+            background-color: var(--jt-header-bg);
+            color: var(--bs-body-color);
+            font-size: 1.2rem;
+            outline: none;
+            box-shadow: var(--jt-shadow-lg);
+            transition: var(--jt-transition);
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px var(--jt-primary);
+        }
+
+        .close-search {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--jt-nav-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--jt-transition);
+        }
+
+        .close-search:hover {
+            color: var(--jt-nav-hover);
+            transform: rotate(90deg);
+        }
+
+        /* لوحة الإعدادات */
+        .settings-panel {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+        }
+
+        .settings-btn {
+            background-color: var(--jt-primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--jt-shadow-lg);
+            transition: var(--jt-transition);
+            border: none;
+        }
+
+        .settings-btn:hover {
+            background-color: var(--jt-primary-hover);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .settings-menu {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background-color: var(--jt-header-bg);
+            border: 1px solid var(--jt-border-light);
+            border-radius: var(--jt-radius-md);
+            padding: 1.5rem;
+            width: 300px;
+            box-shadow: var(--jt-shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--jt-transition);
+            margin-bottom: 1rem;
+        }
+
+        .settings-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .settings-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--jt-heading-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--jt-border-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .toggle-label {
+            font-size: 1rem;
+            color: var(--jt-nav-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: var(--jt-transition);
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--jt-transition);
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--jt-primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* قسم آخر الأخبار */
+        .news-section {
+            background-color: var(--bs-main-bg);
+            border-radius: var(--jt-radius-md);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1400px;
+            width: calc(100% - 4rem);
+            box-shadow: var(--jt-shadow-sm);
+            transition: var(--jt-transition);
+        }
+
+        .news-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--jt-border-light);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--jt-heading-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--jt-primary);
+            display: inline-block;
+        }
+
+        .news-ticker {
+            position: relative;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .news-ticker-content {
+            position: absolute;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .news-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--jt-border-light);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-category {
+            background-color: var(--jt-primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--jt-radius-sm);
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 1rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .news-title {
+            font-size: 1.1rem;
+            color: var(--bs-body-color);
+            transition: var(--jt-transition);
+        }
+
+        /* قسم المقالات المصنفة */
+        .classified-articles {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .classified-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 1200px) {
+            .classified-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .classified-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .classified-category {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--jt-heading-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--jt-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-more {
+            font-size: 0.9rem;
+            color: var(--jt-primary);
+            text-decoration: none;
+            transition: var(--jt-transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .view-more:hover {
+            color: var(--jt-primary-hover);
+            text-decoration: underline;
+        }
+
+        .main-article {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-card {
+            position: relative;
+            border-radius: var(--jt-radius-md);
+            overflow: hidden;
+            box-shadow: var(--jt-shadow-md);
+            transition: var(--jt-transition);
+            height: 250px;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--jt-shadow-lg);
+        }
+
+        .article-card a {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--jt-primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--jt-radius-sm);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .article-info {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .sub-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sub-article {
+            display: flex;
+            gap: 1rem;
+            padding: 0.5rem;
+            border-radius: var(--jt-radius-sm);
+            transition: var(--jt-transition);
+        }
+
+        .sub-article:hover {
+            background-color: var(--jt-primary-light);
+        }
+
+        .sub-article a {
+            display: flex;
+            text-decoration: none;
+            color: inherit;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .sub-article-image {
+            width: 80px;
+            height: 60px;
+            border-radius: var(--jt-radius-sm);
+            object-fit: cover;
+        }
+
+        .sub-article-content {
+            flex: 1;
+        }
+
+        .sub-article-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .sub-article-date {
+            font-size: 0.8rem;
+            color: var(--jt-nav-color);
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: var(--jt-footer-bg);
+            color: var(--jt-footer-color);
+            border-top: 1px solid var(--jt-footer-border);
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+            transition: var(--jt-transition);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--jt-footer-link);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--jt-transition);
+        }
+
+        .footer-link:hover {
+            color: var(--jt-link-hover);
+            text-decoration: underline;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* تأثيرات الانتقال بين الوضعين */
+        .mode-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--jt-primary);
+            z-index: 9999;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .mode-transition.active {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 1200px) {
+            .header-container {
+                padding: 0 1.5rem;
+            }
+            
+            .nav-link {
+                padding: 1rem 0.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-container {
+                height: 70px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+                height: 60px;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+            
+            .settings-panel {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .settings-menu {
+                width: 280px;
+            }
+            
+            .news-section {
+                width: calc(100% - 2rem);
+                margin: 1rem auto;
+                padding: 1rem;
+            }
+        }
+                .articles-section {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--jt-heading-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--jt-primary);
+            display: inline-block;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .article-card {
+            position: relative;
+            border-radius: var(--jt-radius-md);
+            overflow: hidden;
+            box-shadow: var(--jt-shadow-md);
+            transition: var(--jt-transition);
+            height: 300px;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--jt-shadow-lg);
+        }
+        
+        .article-card a {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--jt-primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--jt-radius-sm);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .article-info {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .article-date {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        /* توزيع المقالات حسب الطلب */
+        .article-card:nth-child(1) {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        
+        .article-card:nth-child(2) {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        
+        .article-card:nth-child(3) {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            height: auto;
+        }
+        
+        .article-card:nth-child(4) {
+            grid-column: 3;
+            grid-row: 1;
+        }
+        
+        .article-card:nth-child(5) {
+            grid-column: 3;
+            grid-row: 2;
+        }
+        
+        @media (max-width: 992px) {
+            .articles-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, auto);
+            }
+            
+            .article-card:nth-child(3) {
+                grid-column: 1 / span 2;
+                grid-row: 2;
+                height: 300px;
+            }
+            
+            .article-card:nth-child(4) {
+                grid-column: 1;
+                grid-row: 3;
+            }
+            
+            .article-card:nth-child(5) {
+                grid-column: 2;
+                grid-row: 3;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(5, auto);
+            }
+            
+            .article-card:nth-child(3) {
+                grid-column: 1;
+                grid-row: 3;
+            }
+            
+            .article-card:nth-child(4) {
+                grid-column: 1;
+                grid-row: 4;
+            }
+            
+            .article-card:nth-child(5) {
+                grid-column: 1;
+                grid-row: 5;
+            }
+        }
+                .latest-posts {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .post-card {
+            background-color: var(--bs-main-bg);
+            border-radius: var(--jt-radius-md);
+            overflow: hidden;
+            box-shadow: var(--jt-shadow-sm);
+            transition: var(--jt-transition);
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--jt-shadow-md);
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .post-content {
+            padding: 1.5rem;
+        }
+        
+        .post-category {
+            display: inline-block;
+            background-color: var(--jt-primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--jt-radius-sm);
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .post-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--jt-heading-color);
+        }
+        
+        .post-excerpt {
+            color: var(--jt-nav-color);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            color: var(--jt-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--jt-transition);
+        }
+        
+        .read-more:hover {
+            color: var(--jt-primary-hover);
+            text-decoration: underline;
+        }
+        
+        .load-more-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .load-more-btn {
+            background-color: var(--jt-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: var(--jt-radius-md);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--jt-transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .load-more-btn:hover {
+            background-color: var(--jt-primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .loading-text {
+            display: none;
+        }
+        
+        .loading .load-text {
+            display: none;
+        }
+        
+        .loading .loading-text {
+            display: inline;
+        }
+        
+        /* قسم وسائل التواصل الاجتماعي */
+        .social-media-section {
+            max-width: 1400px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+        
+        .social-media-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .social-media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .social-card {
+            background-color: var(--bs-main-bg);
+            border-radius: var(--jt-radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--jt-shadow-sm);
+            transition: var(--jt-transition);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--jt-shadow-md);
+        }
+        
+        .social-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-followers {
+            color: var(--jt-nav-color);
+            font-size: 0.9rem;
+        }
+        
+        /* قسم المقالات الشائعة */
+        .popular-posts {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .popular-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 992px) {
+            .popular-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .popular-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .popular-item {
+            background-color: var(--bs-main-bg);
+            border-radius: var(--jt-radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--jt-shadow-sm);
+            transition: var(--jt-transition);
+        }
+        
+        .popular-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--jt-shadow-md);
+        }
+        
+        .popular-rank {
+            display: inline-block;
+            background-color: var(--jt-primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .popular-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .popular-title a {
+            color: var(--jt-heading-color);
+            text-decoration: none;
+            transition: var(--jt-transition);
+        }
+        
+        .popular-title a:hover {
+            color: var(--jt-primary);
+        }
+        
+        .popular-views {
+            color: var(--jt-nav-color);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- تأثير الانتقال بين الوضعين -->
+    <div class="mode-transition" id="modeTransition"></div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50/2563eb/ffffff?text=Logo" alt="شعار الموقع">
+                <h1>التعليمي</h1>
+            </div>
+            
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">الاخباري</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">
+                            كيجي
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">كيجي 1</a>
+                            <a href="#" class="dropdown-item">كيجي 2</a>
+                            <a href="#" class="dropdown-item">كيجي 3</a>
+                            <a href="#" class="dropdown-item">كيجي 4</a>
+                            <a href="#" class="dropdown-item">كيجي 5</a>
+                            <a href="#" class="dropdown-item">كيجي 6</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">
+                            ابتدائي
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">الصف الأول</a>
+                            <a href="#" class="dropdown-item">الصف الثاني</a>
+                            <a href="#" class="dropdown-item">الصف الثالث</a>
+                            <a href="#" class="dropdown-item">الصف الرابع</a>
+                            <a href="#" class="dropdown-item">الصف الخامس</a>
+                            <a href="#" class="dropdown-item">الصف السادس</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">
+                            اعدادي
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">الصف الأول</a>
+                            <a href="#" class="dropdown-item">الصف الثاني</a>
+                            <a href="#" class="dropdown-item">الصف الثالث</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">
+                            ثانوي
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">الصف الأول</a>
+                            <a href="#" class="dropdown-item">الصف الثاني</a>
+                            <a href="#" class="dropdown-item">الصف الثالث</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="controls">
+                <button class="control-btn" id="searchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- شريط البحث في منتصف الصفحة -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <div class="search-box">
+                <button class="close-search" id="closeSearch">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+                <input type="text" class="search-input" placeholder="ابحث عن الدروس، المواد، أو المناهج...">
+            </div>
+        </div>
+    </div>
+    
+    <main>
+        <!-- قسم آخر الأخبار -->
+        <section class="news-section">
+            <h2 class="section-title">آخر الأخبار</h2>
+            
+            <div class="news-ticker">
+                <div class="news-ticker-content" id="newsTicker">
+                    <div class="news-item">
+                        <span class="news-category">جمال</span>
+                        <span class="news-title">العناية بالبشرة الجافة والدهنية والمختلطة</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-category">صحة</span>
+                        <span class="news-title">بعض الحرق لتقييم الأسنان وتقويتها</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-category">جمال</span>
+                        <span class="news-title">العناية بالبشرة الجافة والدهنية والمختلطة</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-category">وصفات</span>
+                        <span class="news-title">بعض الوصفات المنزلية لتقوية الشعر</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+         <section class="articles-section">
+            <h2 class="section-title">مقالات مختارة</h2>
+            
+            <div class="articles-grid">
+                <!-- المقالة 1 -->
+                <div class="article-card">
+                    <a href="#">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                        <span class="article-category">تعليم</span>
+                        <div class="article-info">
+                            <div class="article-date">15 مايو 2023</div>
+                            <h3 class="article-title">أهمية التعليم في تنمية المجتمع</h3>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- المقالة 2 -->
+                <div class="article-card">
+                    <a href="#">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                        <span class="article-category">صحة</span>
+                        <div class="article-info">
+                            <div class="article-date">10 مايو 2023</div>
+                            <h3 class="article-title">نصائح للحفاظ على الصحة النفسية للطلاب</h3>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- المقالة 3 (الوسطى) -->
+                <div class="article-card">
+                    <a href="#">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                        <span class="article-category">تكنولوجيا</span>
+                        <div class="article-info">
+                            <div class="article-date">5 مايو 2023</div>
+                            <h3 class="article-title">أحدث التطورات في تكنولوجيا التعليم</h3>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- المقالة 4 -->
+                <div class="article-card">
+                    <a href="#">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                        <span class="article-category">إبداع</span>
+                        <div class="article-info">
+                            <div class="article-date">1 مايو 2023</div>
+                            <h3 class="article-title">كيف تنمي الإبداع عند الأطفال</h3>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- المقالة 5 -->
+                <div class="article-card">
+                    <a href="#">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                        <span class="article-category">لغات</span>
+                        <div class="article-info">
+                            <div class="article-date">25 أبريل 2023</div>
+                            <h3 class="article-title">أفضل طرق تعلم اللغات الأجنبية</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- قسم المقالات المصنفة -->
+        <section class="classified-articles">
+            <div class="classified-grid">
+                <!-- قسم كيجي -->
+                <div class="classified-category">
+                    <h3 class="category-title">كيجي
+                        <a href="#" class="view-more">
+                            عرض المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </h3>
+                    <div class="main-article">
+                        <div class="article-card">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                                <span class="article-category">كيجي 1</span>
+                                <div class="article-info">
+                                    <div class="article-date">1 يونيو 2023</div>
+                                    <h3 class="article-title">طرق تعليمية مبتكرة لمرحلة كيجي</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sub-articles">
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">أنشطة تعليمية مسلية للأطفال</h4>
+                                    <div class="sub-article-date">28 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">كيف تعد طفلك لمرحلة المدرسة</h4>
+                                    <div class="sub-article-date">25 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">أفضل الكتب التعليمية لمرحلة كيجي</h4>
+                                    <div class="sub-article-date">20 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم ابتدائي -->
+                <div class="classified-category">
+                    <h3 class="category-title">ابتدائي
+                        <a href="#" class="view-more">
+                            عرض المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </h3>
+                    <div class="main-article">
+                        <div class="article-card">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                                <span class="article-category">الصف الثالث</span>
+                                <div class="article-info">
+                                    <div class="article-date">30 مايو 2023</div>
+                                    <h3 class="article-title">استراتيجيات تعليم القراءة للصفوف الأولية</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sub-articles">
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">كيف تساعد طفلك في حل الواجبات المدرسية</h4>
+                                    <div class="sub-article-date">27 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">أهمية الأنشطة اللاصفية في المرحلة الابتدائية</h4>
+                                    <div class="sub-article-date">22 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">نصائح لتحسين الخط عند التلاميذ</h4>
+                                    <div class="sub-article-date">18 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم اعدادي -->
+                <div class="classified-category">
+                    <h3 class="category-title">اعدادي
+                        <a href="#" class="view-more">
+                            عرض المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </h3>
+                    <div class="main-article">
+                        <div class="article-card">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                                <span class="article-category">الصف الثاني</span>
+                                <div class="article-info">
+                                    <div class="article-date">29 مايو 2023</div>
+                                    <h3 class="article-title">كيفية التعامل مع ضغوط المرحلة الإعدادية</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sub-articles">
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">أساليب المذاكرة الفعالة للطلاب</h4>
+                                    <div class="sub-article-date">26 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">كيفية اختيار المواد الاختيارية المناسبة</h4>
+                                    <div class="sub-article-date">21 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">أهمية المشاركة في الأنشطة المدرسية</h4>
+                                    <div class="sub-article-date">17 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- قسم ثانوي -->
+                <div class="classified-category">
+                    <h3 class="category-title">ثانوي
+                        <a href="#" class="view-more">
+                            عرض المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </h3>
+                    <div class="main-article">
+                        <div class="article-card">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="article-image">
+                                <span class="article-category">الصف الثالث</span>
+                                <div class="article-info">
+                                    <div class="article-date">28 مايو 2023</div>
+                                    <h3 class="article-title">استعدادات الثانوية العامة ونصائح للتفوق</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sub-articles">
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">كيفية تنظيم الوقت أثناء الامتحانات</h4>
+                                    <div class="sub-article-date">24 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">أفضل طرق مراجعة المواد العلمية</h4>
+                                    <div class="sub-article-date">19 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sub-article">
+                            <a href="#">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6Ns25RbUa-AwdMRnYi8zv8jlqcwpdSvk3fibsPp3qmqFscBKbj8lyS_DH5953Ive1Ew3KiZ4dssHprL3B5Oc9N2cY_K-rBXCRZsq14gEimV_J9l3EagTqOkXTKqakccLjzpbo7YPrzn5ckDiQ86eA5-6sk72SGc_ZyRe6Um3idSTrF6i2zS-ZYO5MLQ/s800-rw-e360-l50/%D8%AC%D8%A7%D9%81%D8%A7.jpg" alt="صورة المقالة" class="sub-article-image">
+                                <div class="sub-article-content">
+                                    <h4 class="sub-article-title">كيف تختار تخصصك الجامعي المناسب</h4>
+                                    <div class="sub-article-date">15 مايو 2023</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <section class="latest-posts">
+            <h2 class="section-title">آخر المشاركات</h2>
+            
+            <div class="posts-grid" id="postsContainer">
+                <!-- المشاركات سيتم إضافتها ديناميكيًا -->
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=صورة+1" alt="صورة المقالة" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">تعليم</span>
+                        <h3 class="post-title">أهمية التعليم في تنمية المجتمع</h3>
+                        <p class="post-excerpt">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...</p>
+                        <a href="#" class="read-more">
+                            اقرأ المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/400x300/1d4ed8/ffffff?text=صورة+2" alt="صورة المقالة" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">صحة</span>
+                        <h3 class="post-title">نصائح للحفاظ على الصحة النفسية للطلاب</h3>
+                        <p class="post-excerpt">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...</p>
+                        <a href="#" class="read-more">
+                            اقرأ المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/400x300/3b82f6/ffffff?text=صورة+3" alt="صورة المقالة" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">تكنولوجيا</span>
+                        <h3 class="post-title">أحدث التطورات في تكنولوجيا التعليم</h3>
+                        <p class="post-excerpt">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...</p>
+                        <a href="#" class="read-more">
+                            اقرأ المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/400x300/60a5fa/ffffff?text=صورة+4" alt="صورة المقالة" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">إبداع</span>
+                        <h3 class="post-title">كيف تنمي الإبداع عند الأطفال</h3>
+                        <p class="post-excerpt">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...</p>
+                        <a href="#" class="read-more">
+                            اقرأ المزيد
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <span class="load-text">تحميل المزيد من المشاركات</span>
+                    <span class="loading-text">جاري التحميل...</span>
+                </button>
+            </div>
+        </section>
+        
+
+    </main>
+    
+    <!-- لوحة الإعدادات -->
+    <div class="settings-panel">
+        <button class="settings-btn" id="settingsBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            </svg>
+        </button>
+        
+        <div class="settings-menu" id="settingsMenu">
+            <h3 class="settings-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                </svg>
+                إعدادات العرض
+            </h3>
+            
+            <div class="toggle-container">
+                <span class="toggle-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                    </svg>
+                    الوضع الليلي
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#" class="footer-link">عن الموقع</a>
+            <a href="#" class="footer-link">المدرسون</a>
+            <a href="#" class="footer-link">الدورات</a>
+            <a href="#" class="footer-link">اتصل بنا</a>
+            <a href="#" class="footer-link">سياسة الخصوصية</a>
+        </div>
+        <p class="copyright">جميع الحقوق محفوظة &copy; 2023 المنصة التعليمية</p>
+    </footer>
+    
+    <script>
+        // تأثير الانتقال بين الوضعين
+        const modeTransition = document.getElementById('modeTransition');
+        
+        // تبديل الوضع الليلي/النهاري
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        function toggleDarkMode(isDark) {
+            // تشغيل تأثير الانتقال
+            modeTransition.classList.add('active');
+            
+            setTimeout(() => {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                
+                // حفظ التفضيل في localStorage
+                localStorage.setItem('darkMode', isDark);
+                
+                // إيقاف تأثير الانتقال بعد التغيير
+                setTimeout(() => {
+                    modeTransition.classList.remove('active');
+                }, 700);
+            }, 100);
+        }
+        
+        darkModeToggle.addEventListener('change', (e) => {
+            toggleDarkMode(e.target.checked);
+        });
+        
+        // تحميل تفضيل الوضع الليلي من localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            darkModeToggle.checked = true;
+            body.classList.add('dark-mode');
+        }
+        
+        // عرض/إخفاء شريط البحث في منتصف الصفحة
+        const searchBtn = document.getElementById('searchBtn');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const closeSearch = document.getElementById('closeSearch');
+        
+        searchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchOverlay.classList.add('active');
+            settingsMenu.classList.remove('active');
+        });
+        
+        closeSearch.addEventListener('click', () => {
+            searchOverlay.classList.remove('active');
+        });
+        
+        // إغلاق شريط البحث عند النقر خارجها
+        searchOverlay.addEventListener('click', (e) => {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+        
+        // عرض/إخفاء لوحة الإعدادات
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsMenu = document.getElementById('settingsMenu');
+        
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsMenu.classList.toggle('active');
+            searchOverlay.classList.remove('active');
+        });
+        
+        // إغلاق القوائم عند النقر خارجها
+        document.addEventListener('click', () => {
+            settingsMenu.classList.remove('active');
+        });
+        
+        // منع إغلاق القوائم عند النقر عليها
+        settingsMenu.addEventListener('click', (e) => e.stopPropagation());
+        
+        // إغلاق لوحة الإعدادات عند تبديل الوضع الليلي
+        darkModeToggle.addEventListener('change', () => {
+            setTimeout(() => {
+                settingsMenu.classList.remove('active');
+            }, 1000);
+        });
+        
+        // شريط الأخبار المتغير
+        const newsTicker = document.getElementById('newsTicker');
+        const newsItems = document.querySelectorAll('.news-item');
+        let currentItem = 0;
+        const itemHeight = newsItems[0].offsetHeight;
+        
+        function rotateNews() {
+            currentItem = (currentItem + 1) % newsItems.length;
+            newsTicker.style.transform = `translateY(-${currentItem * itemHeight}px)`;
+        }
+        
+        // بدء تغيير الأخبار كل 3 ثواني
+        setInterval(rotateNews, 3000);
+                // سكريبت تحميل المزيد من المشاركات
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const postsContainer = document.getElementById('postsContainer');
+        let currentPage = 1;
+        
+        loadMoreBtn.addEventListener('click', function() {
+            // إظهار رسالة التحميل
+            this.classList.add('loading');
+            
+            // محاكاة جلب البيانات من الخادم
+            setTimeout(() => {
+                // إنشاء مشاركات جديدة
+                const newPosts = [
+                    {
+                        image: 'https://via.placeholder.com/400x300/93c5fd/ffffff?text=صورة+5',
+                        category: 'لغات',
+                        title: 'أفضل طرق تعلم اللغات الأجنبية',
+                        excerpt: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...'
+                    },
+                    {
+                        image: 'https://via.placeholder.com/400x300/1e40af/ffffff?text=صورة+6',
+                        category: 'تعليم',
+                        title: 'كيفية تنظيم الوقت أثناء الامتحانات',
+                        excerpt: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...'
+                    },
+                    {
+                        image: 'https://via.placeholder.com/400x300/2563eb/ffffff?text=صورة+7',
+                        category: 'صحة',
+                        title: 'نصائح للحفاظ على الصحة النفسية للطلاب',
+                        excerpt: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...'
+                    },
+                    {
+                        image: 'https://via.placeholder.com/400x300/3b82f6/ffffff?text=صورة+8',
+                        category: 'تكنولوجيا',
+                        title: 'أحدث التطورات في تكنولوجيا التعليم',
+                        excerpt: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى...'
+                    }
+                ];
+                
+                // إضافة المشاركات الجديدة
+                newPosts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post-card';
+                    postElement.innerHTML = `
+                        <img src="${post.image}" alt="صورة المقالة" class="post-image">
+                        <div class="post-content">
+                            <span class="post-category">${post.category}</span>
+                            <h3 class="post-title">${post.title}</h3>
+                            <p class="post-excerpt">${post.excerpt}</p>
+                            <a href="#" class="read-more">
+                                اقرأ المزيد
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+                
+                currentPage++;
+                
+                // إخفاء رسالة التحميل
+                this.classList.remove('loading');
+                
+                // إخفاء الزر إذا وصلنا لنهاية المحتوى (في حالة حقيقية سيكون هناك شرط بناء على عدد الصفحات)
+                if (currentPage >= 3) { // فقط كمثال
+                    this.style.display = 'none';
+                }
+            }, 3000); // 3 ثواني لمحاكاة جلب البيانات
+        });
+        
+    </script>
+</body>
+</html>
